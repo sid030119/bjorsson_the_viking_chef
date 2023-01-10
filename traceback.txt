@@ -1,0 +1,70 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 313, in script
+    call screen Day1
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/script.rpy", line 85, in execute
+    screen Day1:
+  File "game/script.rpy", line 85, in execute
+    screen Day1:
+  File "game/script.rpy", line 91, in execute
+    imagebutton:
+  File "game/script.rpy", line 91, in keywords
+    imagebutton:
+  File "game/script.rpy", line 93, in <module>
+    action Jumg('cook_day1')
+NameError: name 'Jumg' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 313, in script
+    call screen Day1
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\ast.py", line 2232, in execute
+    self.call("execute")
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\ast.py", line 2220, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\statements.py", line 281, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\exports.py", line 3161, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs) # type: ignore
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\core.py", line 3804, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\screen.py", line 451, in visit_all
+    callback(self)
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\core.py", line 3804, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\screen.py", line 462, in per_interact
+    self.update()
+  File "C:\Users\sid03\Downloads\renpy-8.0.0-sdk\renpy\display\screen.py", line 653, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 85, in execute
+    screen Day1:
+  File "game/script.rpy", line 85, in execute
+    screen Day1:
+  File "game/script.rpy", line 91, in execute
+    imagebutton:
+  File "game/script.rpy", line 91, in keywords
+    imagebutton:
+  File "game/script.rpy", line 93, in <module>
+    action Jumg('cook_day1')
+NameError: name 'Jumg' is not defined
+
+Windows-10-10.0.22000 AMD64
+Ren'Py 8.0.1.22070801
+bjorsson the viking chef 1.0
+Mon Jul 25 13:40:52 2022
