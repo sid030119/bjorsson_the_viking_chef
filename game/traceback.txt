@@ -1,0 +1,18 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+Before loading the script.
+NotADirectoryError: [WinError 267] 디렉터리 이름이 올바르지 않습니다: 'D:\\50\\program\\bjorsson_the_viking_chef\\game\\script.rpy'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\bootstrap.py", line 277, in bootstrap
+    renpy.main.main()
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\main.py", line 396, in main
+    for fn in os.listdir(dir):
+NotADirectoryError: [WinError 267] 디렉터리 이름이 올바르지 않습니다: 'D:\\50\\program\\bjorsson_the_viking_chef\\game\\script.rpy'
+
+Windows-10-10.0.22000 AMD64
+Ren'Py 8.0.3.22090809
+ 
+Tue Jan 10 17:36:42 2023
