@@ -81,6 +81,9 @@ image tulbug_normal_dark:
 image tulbug_angry:
     im.FactorScale("tulbug/tulbug_angry.png", 0.6)
 
+image tulbug_angry_dark:
+    im.FactorScale("tulbug/tulbug_angry_dark.png", 0.6)
+
 #image object
 image table_0:
     im.FactorScale("object/table_0.png", 0.6)
@@ -111,7 +114,7 @@ screen Day1:
         idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
         action Jump('tulbug_script')
         xalign 0.8
-        ypos 110
+        ypos 170
 
 
     imagebutton:
@@ -126,7 +129,7 @@ screen Day2:
         idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
         action Jump('helga_tulbug')
         xalign 0.8
-        ypos 110
+        ypos 170
 
     imagebutton:
         idle 'helga/helga_full_dark.png' hover 'helga/helga_full.png'
@@ -135,34 +138,32 @@ screen Day2:
         ypos 170
     
     imagebutton:
-        idle 'object/table_0.png'
+        idle 'object/table_1.png'
         xalign 0.5
         yalign 1.0
 
 screen Day3:
 
+    imagebutton:
+        idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
+        action Jump('ivar_tulbug')
+        xalign 0.8
+        ypos 170
 
+    imagebutton:
+        idle 'helga/helga_full_dark.png' hover 'helga/helga_full.png'
+        action Jump('ivar_helga')
+        xalign 0.47
+        ypos 170
 
     imagebutton:
         idle 'ivar/ivar_full_dark.png' hover 'ivar/ivar_full.png'
         action Jump('ivar_script2')
         xalign 0.2
-        ypos 170
+        ypos 140
 
     imagebutton:
-        idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
-        action Jump('tulbug_script')
-        xalign 0.8
-        ypos 110
-
-    imagebutton:
-        idle 'helga/helga_full_dark.png' hover 'helga/helga_full.png'
-        action Jump('helga_script')
-        xalign 0.5
-        ypos 170
-
-    imagebutton:
-        idle 'object/table_0.png'
+        idle 'object/table_2.png'
         xalign 0.5
         yalign 1.0
 
@@ -227,12 +228,13 @@ label start:
     t "이것좀 보게나-"
     
     hide tulbug_normal
-    with dissolve
 
     hide bjorsson_normal_dark
-    with dissolve
 
     window hide dissolve
+
+    scene black
+    with dissolve
 
     show salmon:
         xalign 0.5
@@ -244,6 +246,8 @@ label start:
     hide salmon
     with dissolve
 
+    scene bg_indoor
+    with dissolve
 
     show tulbug_normal_dark:
         xalign 0.9
@@ -404,6 +408,9 @@ label start:
     label select_day3:
         scene bg bg_indoor
         window hide
+        if ivar_story==3:
+            stop music
+            jump ivar_end
 
         call screen Day3
 
@@ -452,12 +459,10 @@ label start:
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
-            with dissolve
                     
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
-            with dissolve
 
             b "갓 잡은 저 연어... 어떻게 요리해 드릴까요?"
 
@@ -498,12 +503,10 @@ label start:
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
-            with dissolve
                     
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
-            with dissolve
 
             b "브렌다씨는 잘 지내시죠?"
 
@@ -556,12 +559,10 @@ label start:
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
-            with dissolve
                     
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
-            with dissolve
 
             b "항해가 요즘 잘 안되세요?"
 
@@ -584,7 +585,7 @@ label start:
                 ypos 100
 
             hide tulbug_angry
-            show tulbug_normal_dark:
+            show tulbug_angry_dark:
                 xalign 0.9
                 ypos 110
 
@@ -595,7 +596,7 @@ label start:
                 xalign 0.1
                 ypos 110
 
-            hide tulbug_normal_dark
+            hide tulbug_angry_dark
             show tulbug_angry:
                 xalign 0.9
                 ypos 100
@@ -608,9 +609,12 @@ label start:
                 ypos 100
 
             hide tulbug_angry
-            show tulbug_normal_dark:
+            show tulbug_angry_dark:
                 xalign 0.9
                 ypos 110
+
+            hide tulbug_angry_dark
+            with dissolve
 
             b "..."
 
@@ -647,6 +651,8 @@ label start:
 
             scene bg_outdoor
             with dissolve
+
+            pause
 
             show bjorsson_normal:
                 xalign 0.1
@@ -694,7 +700,14 @@ label start:
             
             h "오 마침 제가 후추를 가져왔어요"
 
+            hide bjorsson_normal_dark
+
+            hide helga_happy
+
             window hide dissolve
+
+            scene black
+            with dissolve
 
             show pepper:
                 xalign 0.5
@@ -706,12 +719,14 @@ label start:
             hide pepper
             with dissolve
 
+            scene bg_indoor
+            with dissolve
 
-            hide bjorsson_normal_dark
+           
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
-            hide helga_happy
+            
             show helga_happy_dark:
                 xalign 0.9
                 ypos 110
@@ -775,7 +790,7 @@ label start:
 
     #helga_script2
         label helga_script2:
-            scene bg_forest
+            scene bg_indoor
             show helga_happy_dark:
                 xalign 0.9
                 ypos 110
@@ -807,7 +822,7 @@ label start:
     #helga_pepper
         define helga_pepper_first=0
         label helga_pepper:
-            scene bg_river
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
@@ -852,7 +867,7 @@ label start:
     #helga_festival
         define helga_festival_first=0
         label helga_festival:
-            scene bg_river
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
@@ -897,7 +912,7 @@ label start:
     #helga_merchant
         define helga_merchant_first=0
         label helga_merchant:
-            scene bg_river
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
@@ -953,7 +968,7 @@ label start:
 
     #helga_tulbug
         label helga_tulbug:
-            scene bg_river
+            scene bg_indoor
             show tulbug_happy:
                 xalign 0.1
                 ypos 100
@@ -1061,7 +1076,12 @@ label start:
 
             i "비욘슨 이걸 받게 우리의 출정을 기념할 벌꿀주일세"
 
+            hide bjorsson_normal_dark
+            hide ivar_happy
             window hide dissolve
+
+            scene black
+            with dissolve
 
             show beer:
                 xalign 0.5
@@ -1073,13 +1093,13 @@ label start:
             hide beer
             with dissolve
 
-
-            hide bjorsson_normal_dark
+            scene bg_indoor
+            with dissolve
+           
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
-
-            hide ivar_happy
+            
             show ivar_happy_dark:
                 xalign 0.9
                 ypos 110
@@ -1103,21 +1123,28 @@ label start:
 
             b "아이바르씨!"
 
+            if ivar_tomorrow_first==1:
+                menu: 
+                    "벌꿀주에 관해 물어본다":
+                        jump ivar_beer
+                    "출정일에 관해 물어본다":
+                        jump ivar_tomorrow
+                    "준비에 관해 물어본다":
+                        jump ivar_town
 
-            menu: 
-                "내일에 관해 물어본다":
-                    jump ivar_tomorrow
-                "마을에 관해 물어본다":
-                    jump ivar_town
-                "방랑상인에 관해 물어본다":
-                    jump helga_merchant
-            
+            else:
+                menu: 
+                    "벌꿀주에 관해 물어본다":
+                        jump ivar_beer
+                    "출정일에 관해 물어본다":
+                        jump ivar_tomorrow
 
             jump select_day2
 
-    #ivar_tomorrow
-        label ivar_tomorrow:
-            scene bg_river
+    #ivar_beer
+        define ivar_beer_first=0
+        label ivar_beer:
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
@@ -1126,7 +1153,7 @@ label start:
                 xalign 0.9
                 ypos 110
 
-            b "후추는 어디서 얻으신거예요?"
+            b "벌꿀주!!"
 
             hide bjorsson_normal
             show bjorsson_normal_dark:
@@ -1138,8 +1165,7 @@ label start:
                 xalign 0.9
                 ypos 100
 
-            h "저번에 옆마을에서 방랑상인이라는 사람이 왔길래 식사를 대접했더니{vspace=20}
-            이 후추를 줬어요"
+            i "음!!"
 
             hide bjorsson_normal_dark
             show bjorsson_normal:
@@ -1153,20 +1179,134 @@ label start:
 
             b "....?"
 
-            if helga_pepper_first==0:
-                $helga_pepper_first=1
-                $helga_story=helga_story+1
+            if ivar_beer_first==0:
+                $ivar_beer_first=1
+                $ivar_story=ivar_story+1
 
             jump select_day3
 
+    #ivar_tomorrow
+        define ivar_tomorrow_first=0
+        label ivar_tomorrow:
+            scene bg_indoor
+            show bjorsson_normal:
+                xalign 0.1
+                ypos 100
+                    
+            show ivar_happy_dark:
+                xalign 0.9
+                ypos 110
+
+            b "그나저나 출정일은 다음주라고 들었던것 같은데..."
+
+            hide bjorsson_normal
+            show bjorsson_normal_dark:
+                xalign 0.1
+                ypos 110
+
+            hide ivar_happy_dark
+            show ivar_normal:
+                xalign 0.9
+                ypos 100
+
+            i "아 그래 비욘슨 내가 말을 안했었군"
+            i "요전에 옆 마을에서 도와줄테니 내일 같이 출정하자고 해서 말이지"
+
+            hide ivar_normal
+            show ivar_happy:
+                xalign 0.9
+                ypos 100
+
+            i "급하게 일정을 바꾸느리 준비가 조금 덜 되었지만 어떻게든 되겠지 하하하"
+
+            hide bjorsson_normal_dark
+            show bjorsson_normal:
+                xalign 0.1
+                ypos 100
+
+            hide ivar_happy
+            show ivar_happy_dark:
+                xalign 0.9
+                ypos 110
+
+            b "....?"
+
+            if ivar_tomorrow_first==0:
+                $ivar_tomorrow_first=1
+                $ivar_story=ivar_story+1
+
+            jump select_day3
+
+    #ivar_town
+        define ivar_town_first=0
+        label ivar_town:
+            scene bg_indoor
+            show bjorsson_normal:
+                xalign 0.1
+                ypos 100
+                    
+            show ivar_happy_dark:
+                xalign 0.9
+                ypos 110
+
+            b "참고로 준비가 덜된건 뭔가요?"
+
+            hide bjorsson_normal
+            show bjorsson_normal_dark:
+                xalign 0.1
+                ypos 110
+
+            hide ivar_happy_dark
+            show ivar_happy:
+                xalign 0.9
+                ypos 100
+
+            i "출정동안 마을을 지킬 병력을 못구했어..."
+
+            hide bjorsson_normal_dark
+            show bjorsson_normal:
+                xalign 0.1
+                ypos 100
+
+            hide ivar_happy
+            show ivar_happy_dark:
+                xalign 0.9
+                ypos 110
+
+            b "음...."
+
+            if ivar_town_first==0:
+                $ivar_town_first=1
+                $ivar_story=ivar_story+1
+
+            jump select_day3
+    
+    #ivar_tulbug
+        label ivar_tulbug:
+            
+    #ivar_helga
+        label ivar_helga:
+
+    #ivar_end
+        label ivar_end:
+            scene bg_indoor
+            show bjorsson_normal:
+                xalign 0.1
+                ypos 100
+    
+            b "슬슬 사람들도 모일 것 같다"
+            b "요리를 준비하자"
+
+            jump party_script
+
+#party
+
+    #party_script
+        label party_script:
+            scene black
+            with dissolve
+
+            
 
 
 
-
-
-#cook_day2
-    label cook_day1:
-
-
-
-    return
