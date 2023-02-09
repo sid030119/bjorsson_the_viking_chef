@@ -349,8 +349,10 @@ screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     tag menu
-
     add gui.main_menu_background
+    add gui.game_title:
+        xalign 0.8
+        yalign 0.2
 
     ## This empty frame darkens the main menu.
     frame:
@@ -365,8 +367,8 @@ screen main_menu():
         vbox:
             style "main_menu_vbox"
 
-            text "[config.name!t]":
-                style "main_menu_title"
+            ##text "[config.name!t]":
+            ##    style "main_menu_title"
 
             text "[config.version]":
                 style "main_menu_version"

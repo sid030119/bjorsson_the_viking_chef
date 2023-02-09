@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 101: Line is indented, but the preceding define statement statement does not expect a block. Please check this line's indentation.
-    screen Day1:
+File "game/script.rpy", line 10: Line is indented, but the preceding define statement statement does not expect a block. Please check this line's indentation.
+    image bg select_food1 = "1.png"
     ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Wed Jan 25 19:21:55 2023
+Thu Feb  9 07:14:51 2023

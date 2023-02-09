@@ -1,26 +1,72 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 898, in script
-    $ivarin = move_transitions("move", 10.0)
-  File "game/script.rpy", line 898, in <module>
-    $ivarin = move_transitions("move", 10.0)
-NameError: name 'move_transitions' is not defined
+While processing text tag {vspace =20} in '연어 요리에 사용할 조미료가 없을까? {vspace =20} 밖에 나가보자'.:
+  File "game/script.rpy", line 617, in script
+    b "연어 요리에 사용할 조미료가 없을까? {vspace =20} 밖에 나가보자"
+Exception: Unknown text tag 'vspace =20'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 898, in script
-    $ivarin = move_transitions("move", 10.0)
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\ast.py", line 1131, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\python.py", line 1061, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/script.rpy", line 898, in <module>
-    $ivarin = move_transitions("move", 10.0)
-NameError: name 'move_transitions' is not defined
+  File "game/script.rpy", line 617, in script
+    b "연어 요리에 사용할 조미료가 없을까? {vspace =20} 밖에 나가보자"
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\ast.py", line 921, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\exports.py", line 1373, in say
+    who(what, *args, **kwargs)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\character.py", line 1266, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\character.py", line 927, in do_display
+    display_say(who,
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\character.py", line 666, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\core.py", line 3912, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\core.py", line 2602, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 495, in renpy.display.render.render_screen
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\screen.py", line 704, in render
+    child = renpy.display.render.render(self.child, w, h, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\layout.py", line 1334, in render
+    surf = render(child,
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\text\text.py", line 2109, in render
+    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\text\text.py", line 627, in __init__
+    self.paragraphs = self.segment(text.tokens, style, renders, text)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\text\text.py", line 1278, in segment
+    raise Exception("Unknown text tag %r" % text)
+Exception: Unknown text tag 'vspace =20'
 
 Windows-10-10.0.22000 AMD64
 Ren'Py 8.0.3.22090809
 bjorsson the viking chef 1.0
-Wed Jan 18 18:28:18 2023
+Thu Feb  9 07:10:26 2023

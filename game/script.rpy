@@ -5,14 +5,17 @@ define gui.text_font = "SCDream4.otf"
 
 
 # image 문을 사용해 이미지를 정의합니다.
+#image bg
 
 image bg select_food1 = "1.png"
 image bg bg_river = "background/bg_river.jpg"
 image bg bg_forest = "background/bg_forest.jpg"
-
+image bg bg_indoor = "background/bg_indoor.png"
+image bg bg_outoor = "background/bg_outdoor.jpg"
 image white = Solid("#ffffff")
 image black = Solid("#000000")
 
+#image human
 image bjorsson_normal:
     im.FactorScale("bjorsson/bjorsson_normal.png", 0.6)
 
@@ -78,6 +81,9 @@ image tulbug_normal_dark:
 image tulbug_angry:
     im.FactorScale("tulbug/tulbug_angry.png", 0.6)
 
+#image object
+image table_0:
+    im.FactorScale("object/table_0.png", 0.6)
 image pepper = "food/pepper.png"
 image salmon:
     im.FactorScale("food/salmon.png", 0.5)
@@ -102,27 +108,36 @@ screen Day1:
 
 
     imagebutton:
-        idle 'tulbug/tulbug_full_dark.png' hover 'tulbug/tulbug_full.png'
+        idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
         action Jump('tulbug_script')
-        xalign 0.9 yalign 0.3
+        xalign 0.8
+        ypos 110
+
 
     imagebutton:
-        idle 'door_dark.png' hover 'door.png'
-        action Jump('select')
-        xalign 0.1 yalign 0.4
+        idle 'object/table_0.png'
+        xalign 0.5
+        yalign 1.0
 
 screen Day2:
 
 
     imagebutton:
-        idle 'tulbug/tulbug_full_dark.png' hover 'tulbug/tulbug_full.png'
-        action Jump('tulbug_script')
-        xalign 0.9 yalign 0.3
+        idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
+        action Jump('helga_tulbug')
+        xalign 0.8
+        ypos 110
 
     imagebutton:
         idle 'helga/helga_full_dark.png' hover 'helga/helga_full.png'
         action Jump('helga_script2')
-        xalign 0.6 yalign 0.2
+        xalign 0.5
+        ypos 170
+    
+    imagebutton:
+        idle 'object/table_0.png'
+        xalign 0.5
+        yalign 1.0
 
 screen Day3:
 
@@ -131,17 +146,25 @@ screen Day3:
     imagebutton:
         idle 'ivar/ivar_full_dark.png' hover 'ivar/ivar_full.png'
         action Jump('ivar_script2')
-        xalign 0.1 yalign 0.3
+        xalign 0.2
+        ypos 170
 
     imagebutton:
-        idle 'tulbug/tulbug_full_dark.png' hover 'tulbug/tulbug_full.png'
+        idle 'tulbug/tulbug_full_nofish_dark.png' hover 'tulbug/tulbug_full_nofish.png'
         action Jump('tulbug_script')
-        xalign 0.5 yalign 0.4
+        xalign 0.8
+        ypos 110
 
     imagebutton:
         idle 'helga/helga_full_dark.png' hover 'helga/helga_full.png'
         action Jump('helga_script')
-        xalign 0.9 yalign 0.3
+        xalign 0.5
+        ypos 170
+
+    imagebutton:
+        idle 'object/table_0.png'
+        xalign 0.5
+        yalign 1.0
 
 
 # 여기에서부터 게임이 시작합니다.
@@ -168,7 +191,7 @@ label start:
 
     b "아침부터 누구지...."
 
-    scene bg bg_river
+    scene bg bg_indoor
 
     
 
@@ -202,6 +225,12 @@ label start:
         ypos 100      
 
     t "이것좀 보게나-"
+    
+    hide tulbug_normal
+    with dissolve
+
+    hide bjorsson_normal_dark
+    with dissolve
 
     window hide dissolve
 
@@ -215,12 +244,12 @@ label start:
     hide salmon
     with dissolve
 
-    hide tulbug_normal
+
     show tulbug_normal_dark:
         xalign 0.9
         ypos 110
 
-    hide bjorsson_normal_dark
+
     show bjorsson_normal:
         xalign 0.1
         ypos 100
@@ -353,14 +382,18 @@ label start:
 
 #select_day1
     label select_day1:
-        scene bg bg_river
+        scene bg bg_indoor
         window hide dissolve
+
+        if tulbug_story==3:
+            jump tulbug_end
+
         call screen Day1
 
 #select_day2
     label select_day2:
-        scene bg bg_river
-        window hide dissolve
+        scene bg bg_indoor
+        window hide
         if helga_story==3:
             stop music
             jump ivar_script
@@ -369,8 +402,8 @@ label start:
 
 #select_day3
     label select_day3:
-        scene bg bg_river
-        window hide dissolve
+        scene bg bg_indoor
+        window hide
 
         call screen Day3
 
@@ -379,7 +412,7 @@ label start:
 
     #tulbug_script
         label tulbug_script:
-            scene bg_forest
+            scene bg_indoor
             show tulbug_happy:
                 xalign 0.9
                 ypos 100
@@ -390,19 +423,12 @@ label start:
 
             t "여 비욘슨, 요리는 아직인가?"
 
-            menu:
-                "이야기를 더 듣는다.":
-                    jump tulbug_script2
-                "요리하러 간다":
-                    jump select_day1
-
-    #tulbug_script2
-        label tulbug_script2:
-            scene bg_forest
+            hide tulbug_happy
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
 
+            hide bjorsson_normal_dark
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
@@ -418,18 +444,20 @@ label start:
                     jump tulbug_sail
 
             jump select_day1
-
+            
     #tulbug_salmon
         define tulbug_salmon_first=0
         label tulbug_salmon:
-            scene bg_river
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
+            with dissolve
                     
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
+            with dissolve
 
             b "갓 잡은 저 연어... 어떻게 요리해 드릴까요?"
 
@@ -466,14 +494,16 @@ label start:
     #tulbug_wife
         define tulbug_wife_first=0
         label tulbug_wife:
-            scene bg_river
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
+            with dissolve
                     
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
+            with dissolve
 
             b "브렌다씨는 잘 지내시죠?"
 
@@ -522,14 +552,16 @@ label start:
     #tulbug_sail
         define tulbug_sail_first=0
         label tulbug_sail:
-            scene bg_river
+            scene bg_indoor
             show bjorsson_normal:
                 xalign 0.1
                 ypos 100
+            with dissolve
                     
             show tulbug_happy_dark:
                 xalign 0.9
                 ypos 110
+            with dissolve
 
             b "항해가 요즘 잘 안되세요?"
 
@@ -589,19 +621,18 @@ label start:
 
             jump select_day1
 
-    #select
-    label select:
-        if tulbug_story!=3:
-            menu:
-                "요리에 쓸만한 조미료를 찾아보자":
-                    jump helga_script
-                "툴부그의 이야기를 더 들어보시겠습니까?":
-                    jump select_day1
+    #tulbug_end
+        label tulbug_end:
+            show bjorsson_normal:
+                xalign 0.1
+                ypos 100
+    
+            b "툴부그씨에게 연어를 받았다."
+            b "연어 요리에 사용할 조미료가 없을까? {vspace=20} 밖에 나가보자"
 
-        else:
-            menu:
-                "툴부그의 이야기를 더 들어보시겠습니까?":
-                    jump select_day1
+            jump helga_script
+
+
 
 #helga
 
@@ -614,7 +645,7 @@ label start:
             scene white
             with dissolve
 
-            scene bg_forest
+            scene bg_outdoor
             with dissolve
 
             show bjorsson_normal:
@@ -931,7 +962,7 @@ label start:
                 xalign 0.9
                 ypos 110
 
-            t "아 헬가씨! 오면서 "
+            t "아 헬가씨! 오면서 내 마누라 브렌다 못봤어요?"
 
             hide tulbug_happy
             show tulbug_happy_dark:
@@ -943,11 +974,10 @@ label start:
                 xalign 0.9
                 ypos 100
 
-            h "비욘슨씨도 참 내일이 전사들의 출정날이잖아요{vspace=20}
-            출정날 전날은 항상 축제날이었는데 잊어버리신건가요?"
+            h "아 봤어요 봤어요!! {vspace=20}  저희 집에서 수다떨고 있던데요!"
 
-            hide bjorsson_normal_dark
-            show bjorsson_normal:
+            hide tulbug_happy_dark
+            show tulbug_normal:
                 xalign 0.1
                 ypos 100
 
@@ -956,11 +986,7 @@ label start:
                 xalign 0.9
                 ypos 110
 
-            b "'내일이 벌써 출정날이었나... '"
-
-            if helga_festival_first==0:
-                $helga_festival_first=1
-                $helga_story=helga_story+1
+            t "이 여편네, 저녁쯤이나 되어야 오겠군..."
 
             jump select_day2
 
