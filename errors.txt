@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 10: Line is indented, but the preceding define statement statement does not expect a block. Please check this line's indentation.
-    image bg select_food1 = "1.png"
-    ^
+File "game/script.rpy", line 1411: expected 'label_name' not found.
+    jump 
+        ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Feb  9 07:14:51 2023
+Sat Feb 11 07:43:53 2023

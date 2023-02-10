@@ -12,6 +12,8 @@ image bg bg_river = "background/bg_river.jpg"
 image bg bg_forest = "background/bg_forest.jpg"
 image bg bg_indoor = "background/bg_indoor.png"
 image bg bg_outoor = "background/bg_outdoor.jpg"
+image bg bg_outdoor_night = "background/bg_outdoor_night.jpg"
+image bg bg_party = "background/bg_party.png"
 image white = Solid("#ffffff")
 image black = Solid("#000000")
 
@@ -91,6 +93,8 @@ image pepper = "food/pepper.png"
 image salmon:
     im.FactorScale("food/salmon.png", 0.5)
 image beer = "food/beer.png"
+
+image salmon_steak = "food/salmon_steak.png"
 
 
 # 게임에서 사용할 캐릭터를 정의합니다.
@@ -272,7 +276,7 @@ label start:
         xalign 0.9
         ypos 100
 
-    t "오늘 새벽에 낚았어, 이렇게 큰 녀석은 "
+    t "오늘 새벽에 낚았어, 이렇게 큰 녀석은 좀처럼 보기 힘들다고"
 
     hide tulbug_normal
     show tulbug_normal_dark:
@@ -409,10 +413,14 @@ label start:
         scene bg bg_indoor
         window hide
         if ivar_story==3:
-            stop music
+            stop music fadeout 5.0
             jump ivar_end
 
         call screen Day3
+
+#select_day4
+    label select_day4:
+
 
 #tulbug
 
@@ -636,8 +644,6 @@ label start:
 
             jump helga_script
 
-
-
 #helga
 
     #helga_script
@@ -645,6 +651,8 @@ label start:
         label helga_script:
             scene black
             with dissolve
+
+            play sound "audio/effect/door_open.mp3"
 
             scene white
             with dissolve
@@ -1009,7 +1017,7 @@ label start:
 
     #ivar_script
         label ivar_script:
-            scene bg_forest
+            scene bg_forest1
 
             play music "audio/bgm/My Mother Told Me (Vikings Anthem) Instrumental cover - Low Tin Whistle (Norse Flute Viking Music) (online-audio-converter.com).mp3" fadein 0.5
             
@@ -1018,15 +1026,16 @@ label start:
                 ypos 100
             with fade
             
-            "???" "{cps=20}내 엄마는 나에게 말하곤 하셨지~{/cps}{w=2.0}{nw}"
+            $renpy.pause(0.5)
+
+            window show dissolve
+
+            "???" "{cps=20}내 엄마는 나에게 말하곤 하셨지~{/cps}{w=2.5}{nw}"
             "???" "{cps=20}언젠가 먼 바다를 건널 좋은 노를 가진 갤리선을 사게 될 거라고{/cps}{w=2.0}{nw}"
-            "???" "{cps=20}뱃머리에 서서 안식처로 계속 나아가라{/cps}{w=2.0}{nw}"
-            "???" "{cps=20}수많은 적들의 머리를 쳐라{/cps}{w=2.0}{nw}"
-            "???" "{cps=20}수많은 적들의 머리를 쳐라{/cps}{w=2.0}{nw}"
+            "???" "{cps=20}뱃머리에 서서 안식처로 계속 나아가라{/cps}{w=2.5}{nw}"
+            "???" "{cps=20}수많은 적들의 머리를 쳐라{/cps}{w=2.5}{nw}"
+            "???" "{cps=20}수많은 적들의 머리를 쳐라{/cps}{w=2.5}{nw}"
 
-            stop music fadeout 0.5
-
-            play music "audio/bgm/alexander-nakarada-fantasy-motion-loop-ready.mp3"
 
             scene bg_forest
             with fade
@@ -1076,8 +1085,7 @@ label start:
 
             i "비욘슨 이걸 받게 우리의 출정을 기념할 벌꿀주일세"
 
-            hide bjorsson_normal_dark
-            hide ivar_happy
+
             window hide dissolve
 
             scene black
@@ -1112,7 +1120,7 @@ label start:
             
     #ivar_script2
         label ivar_script2:
-            scene bg_forest
+            scene bg_indoor
             show ivar_happy_dark:
                 xalign 0.9
                 ypos 110
@@ -1305,6 +1313,105 @@ label start:
         label party_script:
             scene black
             with dissolve
+
+            play sound "audio/effect/knife_slicing.mp3"
+
+            $renpy.pause()
+
+            b "음?!?"
+
+            play sound "audio/effect/frying_chips.mp3"
+            $renpy.pause()
+            b "호오....."
+
+            play sound "audio/effect/shaker.mp3"
+            $renpy.pause()
+            b "!!!"
+
+            play sound "audio/effect/success.mp3"
+            show salmon_steak:
+                xalign 0.5
+                ypos 180
+            with dissolve
+
+            $renpy.pause()
+
+            hide salmon
+            with dissolve
+
+            scene bg_party
+            with dissolve
+
+            play music "audio/bgm/crowd_talking.mp3" fadein 1.0
+
+            $renpy.pause(3.0)
+
+            show ivar_happy:
+                xalign 0.5
+                ypos 100
+            with vpunch
+
+            i "건배!!! 우리의 위대한 출정을 위하여!!"
+
+            "전사들" "{cps=20}우오오오오오!!!!{/cps}"
+
+            hide ivar_happy
+            with Dissolve(2.0)
+
+            $renpy.pause()
+
+            show tulbug_angry:
+                xalign 0.5
+                ypos 100
+            with dissolve
+
+            t "이놈의 여편네는 아직도 안오고 뭐하는거야!!"
+
+            hide tulbug_angry
+            with Dissolve(2.0)
+
+            $renpy.pause()
+
+            show helga_happy:
+                xalign 0.5
+                ypos 100
+            with dissolve
+
+            h "음~ 너무 맛있어 다음에는 다른 향신료를 드려봐야겠어 후훗"
+
+            hide helga_happy
+            with Dissolve(2.0)
+
+            $renpy.pause()
+
+            show bjorsson_normal:
+                xalign 0.5
+                ypos 100
+            with dissolve
+
+            b "..."
+
+            scene black
+            with Dissolve(2.0)
+
+            play sound "audio/effect/door_open.mp3"
+
+            stop music fadeout 3.0
+            play music "audio/bgm/crowd_talking_small.mp3" fadein 1.0
+
+            scene bg_outdoor_night
+            with dissolve
+
+            b "후..."
+            b "다들 맛있게 먹어주니 기분이 좋군"
+            b ""
+            b "일단 요리는 했는데 뭔가 찜찜하단 말이지...."
+            b "..."
+
+            jump select_day4
+            
+
+
 
             
 
