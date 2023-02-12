@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 1411: expected 'label_name' not found.
-    jump 
-        ^
+File "game/script.rpy", line 123: 'with' is not a keyword argument or valid child for the imagebutton statement.
+    action Jump('tulbug_script') with dissolve
+                                     ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sat Feb 11 07:43:53 2023
+Mon Feb 13 07:55:22 2023

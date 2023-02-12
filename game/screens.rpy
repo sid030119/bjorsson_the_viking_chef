@@ -328,6 +328,52 @@ screen navigation():
             textbutton _("종료하기") action Quit(confirm=not main_menu)
 
 
+screen mainnavi():
+
+    vbox:
+        style_prefix "navigation"
+
+        xalign 0.5
+        yalign 0.85
+
+        spacing gui.mainnavi_spacing
+
+        if main_menu:
+
+            textbutton _("시작하기") action Start()
+
+        else:
+
+            textbutton _("대사록") action ShowMenu("history")
+
+            textbutton _("저장하기") action ShowMenu("save")
+
+        textbutton _("불러오기") action ShowMenu("load")
+
+        textbutton _("환경설정") action ShowMenu("preferences")
+
+        if _in_replay:
+
+            textbutton _("리플레이 끝내기") action EndReplay(confirm=True)
+
+        elif not main_menu:
+
+            textbutton _("메인 메뉴") action MainMenu()
+
+        textbutton _("버전정보") action ShowMenu("about")
+
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+            ## 도움말 메뉴는 모바일 디바이스와 맞지 않아 불필요합니다.
+            textbutton _("조작방법") action ShowMenu("help")
+
+        if renpy.variant("pc"):
+
+            ## The quit button is banned on iOS and unnecessary on Android and
+            ## Web.
+            textbutton _("종료하기") action Quit(confirm=not main_menu)
+
+
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
 
@@ -350,9 +396,6 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
     add gui.main_menu_background
-    add gui.game_title:
-        xalign 0.8
-        yalign 0.2
 
     ## This empty frame darkens the main menu.
     frame:
@@ -360,7 +403,7 @@ screen main_menu():
 
     ## use 명령어로 스크린 내에 다른 스크린을 불러옵니다. 메인 메뉴 스크린의 내
     ## 용물은 navigation 스크린에 있습니다.
-    use navigation
+    use mainnavi
 
     if gui.show_name:
 
@@ -384,7 +427,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    ##background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
