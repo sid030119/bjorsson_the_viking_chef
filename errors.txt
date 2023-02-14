@@ -2,9 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 123: 'with' is not a keyword argument or valid child for the imagebutton statement.
-    action Jump('tulbug_script') with dissolve
-                                     ^
+File "game/script.rpy", line 1099: invalid syntax
+    master bg_indoor
+            ^
+    
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Mon Feb 13 07:55:22 2023
+Tue Feb 14 07:18:58 2023

@@ -1,32 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-After initialization, but before game start.
-  File "game/screens.rpy", line 348, in prepare_screen
-    screen main_menu():
-  File "game/screens.rpy", line 348, in prepare
-    screen main_menu():
-Exception: A screen named mainnavi does not exist.
+While running game code:
+  File "game/script.rpy", line 1099, in script
+    $master=bg_indoor
+  File "game/script.rpy", line 1099, in <module>
+    $master=bg_indoor
+NameError: name 'bg_indoor' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\bootstrap.py", line 277, in bootstrap
-    renpy.main.main()
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\main.py", line 660, in main
-    run(restart)
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\main.py", line 95, in run
-    renpy.display.screen.prepare_screens()
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\display\screen.py", line 976, in prepare_screens
-    s.ast.prepare_screen()
-  File "game/screens.rpy", line 348, in prepare_screen
-    screen main_menu():
-  File "game/screens.rpy", line 348, in prepare
-    screen main_menu():
-  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\sl2\slast.py", line 1916, in prepare
-    raise Exception("A screen named {} does not exist.".format(self.target))
-Exception: A screen named mainnavi does not exist.
+  File "game/script.rpy", line 1099, in script
+    $master=bg_indoor
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\ast.py", line 1131, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\sid03\Desktop\renpy-8.0.3-sdk\renpy\python.py", line 1061, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 1099, in <module>
+    $master=bg_indoor
+NameError: name 'bg_indoor' is not defined
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.0.3.22090809
 bjorsson the viking chef 1.0
-Mon Feb 13 07:38:15 2023
+Tue Feb 14 07:19:04 2023
