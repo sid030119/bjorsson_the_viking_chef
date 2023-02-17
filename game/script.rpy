@@ -69,6 +69,12 @@ image ivar_normal:
 image ivar_normal_dark:
     im.FactorScale("ivar/ivar_normal_dark.png", 0.6)
 
+image ivar_happy_left:
+    im.FactorScale("ivar/ivar_happy_left.png", 0.6)
+
+image ivar_happy_left_dark:
+    im.FactorScale("ivar/ivar_happy_left_dark.png", 0.6)
+
 image ivar_and_warriors="ivar/ivar_and_warriors.png"
 
 image tulbug_happy:
@@ -1076,7 +1082,7 @@ label start:
     #ivar_script
         label ivar_script:
             scene bg_forest1
-            play music "audio/bgm/My Mother Told Me (Vikings Anthem) Instrumental cover - Low Tin Whistle (Norse Flute Viking Music) (online-audio-converter.com).mp3" fadeout 3.0 fadein 0.5
+            play music "audio/bgm/My Mother Told Me.mp3" fadeout 3.0 fadein 0.5
             
             show ivar_and_warriors:
                 xalign 0.5
@@ -1367,10 +1373,112 @@ label start:
     
     #ivar_tulbug
         label ivar_tulbug:
+            scene bg_indoor
 
+            show ivar_happy_left:
+                xalign 0.1
+                ypos 110
+
+            show tulbug_happy_dark:
+                xalign 0.9
+                ypos 100
+            with fade
+
+            i " 툴부그씨 오늘 요리에 나오는 연어를 잡으셨다면서요"
+
+            hide ivar_happy_left
+            show ivar_happy_left_dark:
+                xalign 0.1
+                ypos 100
+                    
+            hide tulbug_happy_dark
+            show tulbug_happy:
+                xalign 0.9
+                ypos 110
+
+            t " 와하하하 그렇게 됐지 뭐야"
+
+            hide ivar_happy_left_dark
+            show ivar_happy_left:
+                xalign 0.1
+                ypos 110
+
+            hide tulbug_happy
+            show tulbug_happy_dark:
+                xalign 0.9
+                ypos 100
+
+            i " 다음에 낚시 한번 가시죠 제가 더 큰걸 잡아서 대접하겠습니다."
+
+            hide ivar_happy_left
+            show ivar_happy_left_dark:
+                xalign 0.1
+                ypos 100
+                    
+            hide tulbug_happy_dark
+            show tulbug_normal:
+                xalign 0.9
+                ypos 110
+
+            t " 그래 출정 잘 다녀오라고"
+
+
+            jump select_day3
             
     #ivar_helga
         label ivar_helga:
+            scene bg_indoor
+
+            show ivar_happy_left_dark:
+                xalign 0.1
+                ypos 110
+
+            show helga_happy:
+                xalign 0.9
+                ypos 100
+            with fade
+
+            h " 아이바르씨.. 건강히 돌아오셔야 해요"
+
+            hide ivar_happy_left_dark
+            show ivar_happy_left:
+                xalign 0.1
+                ypos 100
+                    
+            hide helga_happy
+            show helga_happy_dark:
+                xalign 0.9
+                ypos 110
+
+            i " 너무 슬퍼하지는 마세요 하하하"
+
+            hide ivar_happy_left
+            show ivar_happy_left_dark:
+                xalign 0.1
+                ypos 110
+
+            hide helga_happy_dark
+            show helga_happy:
+                xalign 0.9
+                ypos 100
+
+            h " ???"
+            h " 그리고 되도록이면 귀금속류를 많이 가져와주세요!!"
+
+            hide ivar_happy_left_dark
+            show ivar_happy_left:
+                xalign 0.1
+                ypos 100
+                    
+            hide helga_happy
+            show helga_happy_dark:
+                xalign 0.9
+                ypos 110
+
+            i " 아... 네..."
+
+            
+            jump select_day3
 
     #ivar_end
         label ivar_end:
@@ -1500,7 +1608,6 @@ label start:
                 "뭔가가 이상하다":
                     jump ending_2
                 with dissolve
-
 
 #ending
 
